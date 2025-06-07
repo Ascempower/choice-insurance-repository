@@ -123,7 +123,8 @@ a {
 a:hover {
     color: var(--accent-color);
 }
-//* Coral Learn More Buttons - Matching Reference Site */
+/* CSS Comment Fix */
+/* Coral Learn More Buttons - Matching Reference Site */
 .btn-coral {
     background-color: #DD8B66; /* Original coral color from branding */
     color: var(--text-light);
