@@ -1,11 +1,7 @@
-# Static site redirects for Netlify
-# This file ensures proper routing for the Choice Insurance Agency website
+# Static site redirects for Choice Insurance Agency
+# Ensures proper routing and clean URLs
 
-# Redirect root variations to main page
-/home /index.html 200
-/index /index.html 200
-
-# Handle clean URLs
+# Handle clean URLs (without .html extension)
 /about /about.html 200
 /contact /contact.html 200
 /services /services.html 200
@@ -21,6 +17,6 @@
 /faq/ /faq.html 200
 /blog/ /blog.html 200
 
-# Fallback for any unmatched routes (SPA-style routing)
-/* /index.html 200
+# Fallback for 404 errors
+/404 /index.html 404
 
