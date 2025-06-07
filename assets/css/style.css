@@ -565,42 +565,117 @@ a:hover {
     line-height: 1.8;
 }
 
-/* Services Section */
+/* Services/* Services Section - Crisp Card Design */
 .services {
     padding: 80px 0;
-    background-color: var(--background-gray);
+    background-color: #f8f9fa;
 }
 
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2rem;
-    margin-bottom: 3rem;
+    margin-top: 3rem;
 }
 
 .service-card {
-    background-color: var(--background-light);
+    background: var(--background-light);
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
     padding: 2rem;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
-    text-align: left;
     transition: var(--transition);
-    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
 }
 
 .service-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-hover);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border-color: var(--secondary-color);
 }
 
 .service-card h3 {
     color: var(--accent-color);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
     margin-bottom: 1rem;
-    font-size: 1.5rem;
+    line-height: 1.3;
 }
 
 .service-card p {
+    color: #666;
+    font-size: var(--font-size-base);
+    line-height: 1.6;
     margin-bottom: 1.5rem;
+}
+
+.service-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.service-actions .btn {
+    flex: 1;
+    min-width: 140px;
+    text-align: center;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    padding: 10px 16px;
+    border-radius: 6px;
+    transition: var(--transition);
+}
+
+.service-actions .btn-secondary {
+    background-color: var(--accent-color);
+    color: var(--text-light);
+    border: none;
+}
+
+.service-actions .btn-secondary:hover {
+    background-color: #365048;
+    transform: translateY(-1px);
+}
+
+.service-actions .btn-outline {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1.5px solid var(--primary-color);
+}
+
+.service-actions .btn-outline:hover {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .service-actions {
+        flex-direction: column;
+    }
+    
+    .service-actions .btn {
+        width: 100%;
+        min-width: auto;
+    }
+}
     color: #666;
 }
 
@@ -1062,5 +1137,163 @@ a:focus {
         width: 100%;
         max-width: 300px;
     }
+}
+
+
+/* Section Headers - Enhanced Typography */
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.section-header h2 {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+.section-header p {
+    font-size: var(--font-size-lg);
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+/* About Section - Clean Layout */
+.about-section {
+    padding: 80px 0;
+    background-color: var(--background-light);
+}
+
+.about-section .section-header {
+    max-width: 900px;
+}
+
+.about-section .btn {
+    margin-top: 2rem;
+    padding: 12px 32px;
+    font-weight: var(--font-weight-medium);
+}
+
+/* Why Choose Us - Feature Cards */
+.why-choose-us {
+    padding: 80px 0;
+    background-color: #f8f9fa;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.feature-item {
+    background: var(--background-light);
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid #e9ecef;
+    transition: var(--transition);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.feature-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border-color: var(--secondary-color);
+}
+
+.feature-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 1.5rem;
+    color: var(--text-light);
+    font-weight: var(--font-weight-bold);
+}
+
+.feature-item h3 {
+    color: var(--accent-color);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: 1rem;
+}
+
+.feature-item p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+/* Contact Section - Professional Layout */
+.contact-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, var(--accent-color) 0%, var(--secondary-color) 100%);
+    color: var(--text-light);
+}
+
+.contact-section .section-header h2 {
+    color: var(--text-light);
+}
+
+.contact-section .section-header p {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.contact-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.contact-option {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    transition: var(--transition);
+}
+
+.contact-option:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-4px);
+}
+
+.contact-option h3 {
+    color: var(--text-light);
+    font-size: var(--font-size-xl);
+    margin-bottom: 1rem;
+}
+
+.contact-option p {
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 1.5rem;
+}
+
+.contact-option .btn {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    border: none;
+    padding: 12px 24px;
+    font-weight: var(--font-weight-medium);
+}
+
+.contact-option .btn:hover {
+    background-color: #c67a5a;
+    transform: translateY(-1px);
 }
 
