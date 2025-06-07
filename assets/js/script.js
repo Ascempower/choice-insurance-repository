@@ -46,6 +46,81 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// Dropdown Menu Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const dropdown = document.querySelector('.dropdown');
+    const dropdownToggle = document.querySelector('.dropdown-toggle');
+    const dropdownMenu = document.querySelector('.dropdown-menu');
+    
+    if (dropdown && dropdownToggle && dropdownMenu) {
+        let dropdownTimeout;
+        
+        // Show dropdown on hover
+        dropdown.addEventListener('mouseenter', function() {
+            clearTimeout(dropdownTimeout);
+            dropdownMenu.style.opacity = '1';
+            dropdownMenu.style.visibility = 'visible';
+            dropdownMenu.style.marginTop = '0.5rem';
+            
+            // Track dropdown interaction
+            gtmTrackEvent('hover', 'navigation', 'services_dropdown_open', 'header');
+        });
+        
+        // Hide dropdown on mouse leave with delay
+        dropdown.addEventListener('mouseleave', function() {
+            dropdownTimeout = setTimeout(function() {
+                dropdownMenu.style.opacity = '0';
+                dropdownMenu.style.visibility = 'hidden';
+                dropdownMenu.style.marginTop = '1rem';
+            }, 200);
+        });
+        
+        // Click functionality for mobile
+        dropdownToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const isVisible = dropdownMenu.style.visibility === 'visible';
+            
+            if (isVisible) {
+                dropdownMenu.style.opacity = '0';
+                dropdownMenu.style.visibility = 'hidden';
+                dropdownMenu.style.marginTop = '1rem';
+            } else {
+                dropdownMenu.style.opacity = '1';
+                dropdownMenu.style.visibility = 'visible';
+                dropdownMenu.style.marginTop = '0.5rem';
+            }
+            
+            // Track dropdown click
+            gtmTrackEvent('click', 'navigation', 'services_dropdown_toggle', 'header');
+        });
+        
+        // Track dropdown link clicks
+        const dropdownLinks = document.querySelectorAll('.dropdown-link');
+        dropdownLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                const linkText = this.textContent.trim();
+                gtmTrackEvent('click', 'navigation', 'dropdown_link_click', linkText);
+                
+                // Hide dropdown after click
+                dropdownMenu.style.opacity = '0';
+                dropdownMenu.style.visibility = 'hidden';
+                dropdownMenu.style.marginTop = '1rem';
+            });
+        });
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!dropdown.contains(e.target)) {
+                dropdownMenu.style.opacity = '0';
+                dropdownMenu.style.visibility = 'hidden';
+                dropdownMenu.style.marginTop = '1rem';
+            }
+        });
+    }
+});
+
 // Smooth Scrolling for Anchor Links
 document.addEventListener('DOMContentLoaded', function() {
     const links = document.querySelectorAll('a[href^="#"]');
@@ -250,4 +325,172 @@ const animationCSS = `
 const style = document.createElement('style');
 style.textContent = animationCSS;
 document.head.appendChild(style);
+
+
+// Calendly Integration
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize Calendly for consultation buttons
+    const consultationButtons = document.querySelectorAll('a[href="#consultation"], a[href="#contact"]');
+    
+    consultationButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Open Calendly popup
+            if (typeof Calendly !== 'undefined') {
+                Calendly.initPopupWidget({
+                    url: 'https://calendly.com/choiceinsuranceagency/consultation'
+                });
+                
+                // Track Calendly interaction
+                gtmTrackEvent('click', 'calendly', 'consultation_booking', 'popup_opened');
+            } else {
+                // Fallback to contact form if Calendly not loaded
+                const contactSection = document.getElementById('contact');
+                if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+    });
+    
+    // Track Calendly events
+    window.addEventListener('message', function(e) {
+        if (e.data.event && e.data.event.indexOf('calendly') === 0) {
+            if (e.data.event === 'calendly.event_scheduled') {
+                gtmTrackEvent('conversion', 'calendly', 'consultation_scheduled', 'success');
+            }
+        }
+    });
+});
+
+// Plan Enrollment Links
+document.addEventListener('DOMContentLoaded', function() {
+    // Create plan enrollment functionality
+    const planEnrollmentLinks = document.querySelectorAll('.plan-enroll, .enroll-now');
+    
+    planEnrollmentLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const planType = this.getAttribute('data-plan') || 'general';
+            
+            // Track plan enrollment click
+            gtmTrackEvent('click', 'enrollment', 'plan_enrollment_start', planType);
+            
+            // Open enrollment form or redirect to enrollment page
+            openEnrollmentModal(planType);
+        });
+    });
+});
+
+// Enrollment Modal Function
+function openEnrollmentModal(planType) {
+    // Create modal HTML
+    const modalHTML = `
+        <div id="enrollment-modal" class="modal-overlay" style="
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        ">
+            <div class="modal-content" style="
+                background: white;
+                border-radius: 12px;
+                padding: 2rem;
+                max-width: 500px;
+                width: 90%;
+                max-height: 80vh;
+                overflow-y: auto;
+                position: relative;
+            ">
+                <button class="modal-close" style="
+                    position: absolute;
+                    top: 1rem;
+                    right: 1rem;
+                    background: none;
+                    border: none;
+                    font-size: 1.5rem;
+                    cursor: pointer;
+                    color: #666;
+                ">&times;</button>
+                
+                <h2 style="color: var(--primary-color); margin-bottom: 1rem;">
+                    Start Your ${planType.charAt(0).toUpperCase() + planType.slice(1)} Enrollment
+                </h2>
+                
+                <p style="margin-bottom: 1.5rem; color: #666;">
+                    We're here to help you find the perfect insurance plan. Choose how you'd like to get started:
+                </p>
+                
+                <div class="enrollment-options" style="display: flex; flex-direction: column; gap: 1rem;">
+                    <button class="btn btn-primary" onclick="scheduleConsultation()" style="width: 100%; padding: 1rem;">
+                        📅 Schedule a Free Consultation
+                    </button>
+                    
+                    <button class="btn btn-secondary" onclick="callNow()" style="width: 100%; padding: 1rem;">
+                        📞 Call Now: (877) 204-9648
+                    </button>
+                    
+                    <button class="btn btn-outline" onclick="emailUs()" style="width: 100%; padding: 1rem;">
+                        ✉️ Email Us Your Questions
+                    </button>
+                </div>
+                
+                <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #eee; text-align: center;">
+                    <p style="font-size: 0.9rem; color: #666; margin-bottom: 0;">
+                        Licensed in IL, AL, GA, OH, KY, MS, SC, TX
+                    </p>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    // Add modal to page
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+    
+    // Add close functionality
+    const modal = document.getElementById('enrollment-modal');
+    const closeBtn = modal.querySelector('.modal-close');
+    
+    closeBtn.addEventListener('click', () => {
+        modal.remove();
+    });
+    
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.remove();
+        }
+    });
+}
+
+// Enrollment Modal Actions
+function scheduleConsultation() {
+    document.getElementById('enrollment-modal').remove();
+    
+    if (typeof Calendly !== 'undefined') {
+        Calendly.initPopupWidget({
+            url: 'https://calendly.com/choiceinsuranceagency/consultation'
+        });
+        gtmTrackEvent('click', 'enrollment', 'schedule_consultation', 'modal');
+    }
+}
+
+function callNow() {
+    window.location.href = 'tel:+18772049648';
+    gtmTrackEvent('click', 'enrollment', 'phone_call', 'modal');
+    document.getElementById('enrollment-modal').remove();
+}
+
+function emailUs() {
+    window.location.href = 'mailto:info@choiceinsurancehub.com?subject=Insurance Enrollment Inquiry';
+    gtmTrackEvent('click', 'enrollment', 'email_contact', 'modal');
+    document.getElementById('enrollment-modal').remove();
+}
 
