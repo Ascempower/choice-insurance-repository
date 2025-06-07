@@ -1383,3 +1383,139 @@ a:focus {
     transform: translateY(-1px);
 }
 
+
+/* Dropdown Navigation Styles */
+.nav-dropdown {
+    position: relative;
+}
+
+.dropdown-toggle {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-base);
+    cursor: pointer;
+    padding: 1rem 1.5rem;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    transition: var(--transition);
+}
+
+.dropdown-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-light);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    padding: 2rem;
+    min-width: 800px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    border: 1px solid var(--border-color);
+}
+
+.nav-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.dropdown-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.dropdown-item {
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
+
+.dropdown-link {
+    display: block;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: var(--text-dark);
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+    border: 1px solid transparent;
+}
+
+.dropdown-link:hover {
+    background-color: var(--background-gray);
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.dropdown-link h4 {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.dropdown-link p {
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.4;
+}
+
+.dropdown-link.all-services {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    border-color: var(--primary-color);
+}
+
+.dropdown-link.all-services h4,
+.dropdown-link.all-services p {
+    color: var(--text-light);
+}
+
+.dropdown-link.all-services:hover {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+}
+
+/* Color-coded dropdown items to match reference */
+.dropdown-item:nth-child(2) .dropdown-link {
+    border-left: 4px solid #4CAF50; /* Green for Medicare Supplement */
+}
+
+.dropdown-item:nth-child(3) .dropdown-link {
+    border-left: 4px solid #2196F3; /* Blue for Life Insurance */
+}
+
+.dropdown-item:nth-child(4) .dropdown-link {
+    border-left: 4px solid #FF9800; /* Orange for Cancer & Illness */
+}
+
+.dropdown-item:nth-child(5) .dropdown-link {
+    border-left: 4px solid #9C27B0; /* Purple for Medicare Advantage */
+}
+
+.dropdown-item:nth-child(6) .dropdown-link {
+    border-left: 4px solid #F44336; /* Red for Final Expense */
+}
+
+.dropdown-item:nth-child(7) .dropdown-link {
+    border-left: 4px solid #607D8B; /* Blue Gray for Hospital Indemnity */
+}
+
+.dropdown-item:nth-child(8) .dropdown-link {
+    border-left: 4px solid #795548; /* Brown for Annuities */
+}
+
