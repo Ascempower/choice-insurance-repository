@@ -1,104 +1,90 @@
-# Netlify Configuration for Choice Insurance Agency
+[functions]
+
+  [functions.emails]
+  included_files = [
+    "./emails/**"
+  ]
 
 [build]
-  # For static HTML sites, no build command needed
-  command = ""
-  # Publish directory for static files
-  publish = "."
-
-[build.environment]
-  # Node version for any build processes
-  NODE_VERSION = "18"
-
-# Headers for security and performance
-[[headers]]
-  for = "/*"
-  [headers.values]
-    # Security headers
-    X-Frame-Options = "DENY"
-    X-Content-Type-Options = "nosniff"
-    X-XSS-Protection = "1; mode=block"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-    
-    # Content Security Policy - Updated for Calendly Integration
-    Content-Security-Policy = """
-      default-src 'self';
-      script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://fonts.googleapis.com https://assets.calendly.com;
-      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://assets.calendly.com;
-      font-src 'self' https://fonts.gstatic.com;
-      img-src 'self' data: https: https://assets.calendly.com;
-      connect-src 'self' https://www.google-analytics.com https://api.calendly.com;
-      frame-src 'self' https://www.googletagmanager.com https://calendly.com;
-      child-src 'self' https://calendly.com;
-    """
-
-# Cache static assets with shorter cache times to ensure updates are seen
-[[headers]]
-  for = "/assets/*"
-  [headers.values]
-    Cache-Control = "public, max-age=3600"
+publish = "/"
 
 [[headers]]
-  for = "/*.css"
+for = "/_next/static/*"
+
   [headers.values]
-    Cache-Control = "public, max-age=3600"
+  Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "/*.js"
-  [headers.values]
-    Cache-Control = "public, max-age=3600"
+for = "/assets/*"
 
-# HTML files should not be cached as aggressively
+  [headers.values]
+  Cache-Control = "public, max-age=2592000"
+
 [[headers]]
-  for = "/*.html"
+for = "/images/*"
+
   [headers.values]
-    Cache-Control = "public, max-age=300"
+  Cache-Control = "public, max-age=2592000"
 
-# Redirects for clean URLs and SEO
-[[redirects]]
-  from = "/home"
-  to = "/"
-  status = 301
+[[headers]]
+for = "/*"
 
-[[redirects]]
-  from = "/index.html"
-  to = "/"
-  status = 301
+  [headers.values]
+  X-Content-Type-Options = "nosniff"
+  X-Frame-Options = "DENY"
+  X-XSS-Protection = "1; mode=block"
+  Referrer-Policy = "strict-origin-when-cross-origin"
+  Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+  Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';"
+  Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
 
-# Handle trailing slashes
-[[redirects]]
-  from = "/about/"
-  to = "/about.html"
-  status = 200
+[[headers]]
+for = "/secure-contact.html"
 
-[[redirects]]
-  from = "/contact/"
-  to = "/contact.html"
-  status = 200
-
-[[redirects]]
-  from = "/services/"
-  to = "/services.html"
-  status = 200
-
-[[redirects]]
-  from = "/blog/"
-  to = "/blog.html"
-  status = 200
+  [headers.values]
+  Cache-Control = "no-store, max-age=0"
+  Pragma = "no-cache"
+  X-Content-Type-Options = "nosniff"
+  X-Frame-Options = "DENY"
+  X-XSS-Protection = "1; mode=block"
+  Referrer-Policy = "no-referrer"
+  Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+  Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';"
+  Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
 
 [[redirects]]
-  from = "/testimonials/"
-  to = "/testimonials.html"
-  status = 200
+from = "/_next/image"
+to = "/.netlify/images"
+status = 200
+force = true
 
 [[redirects]]
-  from = "/faq/"
-  to = "/faq.html"
-  status = 200
+from = "/*"
+to = "/404.html"
+status = 404
 
-# 404 fallback
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 404
+from = "/contact-secure"
+to = "/secure-contact.html"
+status = 301
+force = true
 
+[context]
+
+  [context.production]
+
+    [context.production.functions]
+
+      [context.production.functions.emails]
+      included_files = [
+        "./emails/**"
+      ]
+
+  [context.main]
+
+    [context.main.functions]
+
+      [context.main.functions.emails]
+      included_files = [
+        "./emails/**"
+      ]
