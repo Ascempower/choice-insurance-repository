@@ -327,40 +327,29 @@ style.textContent = animationCSS;
 document.head.appendChild(style);
 
 
-// Calendly Integration
+// Simple Contact Integration (Calendly removed due to 404 errors)
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize Calendly for consultation buttons
+    // Initialize contact buttons to scroll to contact section
     const consultationButtons = document.querySelectorAll('a[href="#consultation"], a[href="#contact"]');
     
     consultationButtons.forEach(button => {
         button.addEventListener('click', function(e) {
             e.preventDefault();
             
-            // Open Calendly popup
-            if (typeof Calendly !== 'undefined') {
-                Calendly.initPopupWidget({
-                    url: 'https://calendly.com/choiceinsuranceagency/consultation'
+            // Scroll to contact section
+            const contactSection = document.getElementById('contact') || document.querySelector('.footer');
+            if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+            }
+            
+            // Track interaction
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'click', {
+                    'event_category': 'cta',
+                    'event_label': 'consultation_request'
                 });
-                
-                // Track Calendly interaction
-                gtmTrackEvent('click', 'calendly', 'consultation_booking', 'popup_opened');
-            } else {
-                // Fallback to contact form if Calendly not loaded
-                const contactSection = document.getElementById('contact');
-                if (contactSection) {
-                    contactSection.scrollIntoView({ behavior: 'smooth' });
-                }
             }
         });
-    });
-    
-    // Track Calendly events
-    window.addEventListener('message', function(e) {
-        if (e.data.event && e.data.event.indexOf('calendly') === 0) {
-            if (e.data.event === 'calendly.event_scheduled') {
-                gtmTrackEvent('conversion', 'calendly', 'consultation_scheduled', 'success');
-            }
-        }
     });
 });
 
@@ -474,11 +463,18 @@ function openEnrollmentModal(planType) {
 function scheduleConsultation() {
     document.getElementById('enrollment-modal').remove();
     
-    if (typeof Calendly !== 'undefined') {
-        Calendly.initPopupWidget({
-            url: 'https://calendly.com/choiceinsuranceagency/consultation'
+    // Scroll to contact section instead of Calendly
+    const contactSection = document.getElementById('contact') || document.querySelector('.footer');
+    if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    // Track interaction
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'click', {
+            'event_category': 'enrollment',
+            'event_label': 'schedule_consultation'
         });
-        gtmTrackEvent('click', 'enrollment', 'schedule_consultation', 'modal');
     }
 }
 
