@@ -587,10 +587,41 @@ p {
     color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
     transition: var(--transition);
+    padding: 0.5rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    margin-bottom: 0.5rem;
 }
 
 .social-link:hover {
     color: var(--primary-color);
+    background: rgba(167, 201, 202, 0.2);
+    transform: translateY(-2px);
+}
+
+.social-link svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+@media (min-width: 768px) {
+    .social-links {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    
+    .social-link {
+        margin-bottom: 0;
+    }
 }
 
 .footer-bottom {
