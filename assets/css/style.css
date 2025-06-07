@@ -778,60 +778,12 @@ a:hover {
     margin-bottom: 1.5rem;
 }
 
-.service-actions {
-    display: flex;
-    gap: 0.75rem;
-    margin-top: 1.5rem;
-    flex-wrap: wrap;
-}
-
-.service-actions .btn {
-    flex: 1;
-    min-width: 140px;
-    text-align: center;
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-medium);
-    padding: 10px 16px;
-    border-radius: 6px;
-    transition: var(--transition);
-}
-
-.service-actions .btn-secondary {
-    background-color: var(--accent-color);
-    color: var(--text-light);
-    border: none;
-}
-
-.service-actions .btn-secondary:hover {
-    background-color: #365048;
-    transform: translateY(-1px);
-}
-
-.service-actions .btn-outline {
-    background-color: transparent;
-    color: var(--primary-color);
-    border: 1.5px solid var(--primary-color);
-}
-
-.service-actions .btn-outline:hover {
-    background-color: var(--primary-color);
-    color: var(--text-light);
-    transform: translateY(-1px);
-}
+/* Service Actions Removed - Simplified to match reference site */
 
 @media (max-width: 768px) {
     .services-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
-    }
-    
-    .service-actions {
-        flex-direction: column;
-    }
-    
-    .service-actions .btn {
-        width: 100%;
-        min-width: auto;
     }
 }
     color: #666;
@@ -1229,31 +1181,7 @@ a:focus {
 }
 
 
-/* Service Actions Styling */
-.service-actions {
-    display: flex;
-    gap: 0.5rem;
-    margin-top: 1rem;
-    flex-wrap: wrap;
-}
-
-.service-actions .btn {
-    flex: 1;
-    min-width: 120px;
-    text-align: center;
-    font-size: var(--font-size-sm);
-    padding: 8px 12px;
-}
-
-@media (max-width: 768px) {
-    .service-actions {
-        flex-direction: column;
-    }
-    
-    .service-actions .btn {
-        width: 100%;
-    }
-}
+/* Service Actions Styling - Removed to match reference site */
 
 /* Modal Styling */
 .modal-overlay {
