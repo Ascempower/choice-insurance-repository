@@ -17,6 +17,3 @@
 /faq/ /faq.html 200
 /blog/ /blog.html 200
 
-# Fallback for 404 errors
-/404 /index.html 404
-
