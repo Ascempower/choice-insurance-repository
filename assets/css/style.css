@@ -123,7 +123,37 @@ a {
 a:hover {
     color: var(--accent-color);
 }
-//* Buttons - Enhanced Contrast */
+//* Coral Learn More Buttons - Matching Reference Site */
+.btn-coral {
+    background-color: #DD8B66; /* Original coral color from branding */
+    color: var(--text-light);
+    border: 2px solid #DD8B66;
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-semibold);
+    transition: var(--transition);
+}
+
+.btn-coral:hover {
+    background-color: #C67A5A; /* Slightly darker on hover */
+    border-color: #C67A5A;
+    color: var(--text-light);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-hover);
+}
+
+/* Update service card buttons to use coral */
+.service-card .btn-secondary {
+    background-color: #DD8B66;
+    color: var(--text-light);
+    border: 2px solid #DD8B66;
+}
+
+.service-card .btn-secondary:hover {
+    background-color: #C67A5A;
+    border-color: #C67A5A;
+    color: var(--text-light);
+    transform: translateY(-1px);
+}
 .btn {
     display: inline-block;
     padding: 12px 24px;
