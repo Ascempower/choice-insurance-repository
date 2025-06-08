@@ -6,10 +6,10 @@
 }
 
 :root {
-    /* Brand Colors - Enhanced for Better Contrast */
-    --primary-color: #C85A3A;          /* Darker coral for better contrast */
-    --secondary-color: #8FB5B7;        /* Slightly darker teal for contrast */
-    --accent-color: #2F4A42;           /* Darker forest green for better readability */
+    /* Brand Colors - Updated to match reference design */
+    --primary-color: #A7C9CA;          /* Teal blue for header and buttons */
+    --secondary-color: #42615A;        /* Deep forest green */
+    --accent-color: #DD8B66;           /* Warm coral for accents */
     --text-dark: #000000;              /* Black - Maximum contrast */
     --text-light: #FFFFFF;             /* White - Maximum contrast */
     --background-light: #FFFFFF;       /* White background */
@@ -17,8 +17,8 @@
     --border-color: #e9ecef;           /* Subtle borders */
     
     /* Enhanced contrast colors for accessibility */
-    --primary-dark: #A64829;           /* Darker primary for better contrast */
-    --secondary-dark: #7A9FA1;         /* Darker secondary for contrast */
+    --primary-dark: #8FB5B7;           /* Darker primary for better contrast */
+    --secondary-dark: #2F4A42;         /* Darker secondary for contrast */
     --text-muted: #495057;             /* Dark gray instead of light gray */
     
     /* Effects */
@@ -227,21 +227,13 @@ a:hover {
 
 /* Header */
 .header {
-    background-color: var(--accent-color);
+    background-color: var(--primary-color);
     box-shadow: var(--shadow);
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-  /* Header */
-.header {
-    background-color: var(--accent-color);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Navigation Container - Horizontal Layout */
@@ -293,7 +285,7 @@ a:hover {
 /* Navigation Links - Clean Horizontal Tabs */
 .nav-link {
     text-decoration: none;
-    color: var(--text-light);
+    color: var(--secondary-color);
     font-family: var(--font-family);
     font-weight: var(--font-weight-medium);
     font-size: var(--font-size-base);
@@ -312,8 +304,8 @@ a:hover {
 
 .nav-link:hover,
 .nav-link.active {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: var(--text-light);
+    background-color: rgba(66, 97, 90, 0.1);
+    color: var(--secondary-dark);
 }
 
 /* Dropdown Toggle Styling */
@@ -323,7 +315,7 @@ a:hover {
     gap: 0.5rem;
     background: none;
     border: none;
-    color: var(--text-light);
+    color: var(--secondary-color);
     font-family: var(--font-family);
     font-weight: var(--font-weight-medium);
     font-size: var(--font-size-base);
@@ -334,7 +326,8 @@ a:hover {
 }
 
 .dropdown-toggle:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(66, 97, 90, 0.1);
+    color: var(--secondary-dark);
 }
 
 .dropdown-arrow {
@@ -900,8 +893,8 @@ a:hover {
 
 /* Footer */
 .footer {
-    background-color: var(--accent-color);
-    color: var(--text-light);
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
     padding: 60px 0 20px;
 }
 
@@ -919,7 +912,7 @@ a:hover {
 }
 
 .footer-section h3 {
-    color: var(--primary-color);
+    color: var(--secondary-dark);
     margin-bottom: 1rem;
     font-size: 1.2rem;
 }
@@ -932,7 +925,7 @@ a:hover {
 }
 
 .footer-section p {
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--secondary-color);
     line-height: 1.6;
     margin-bottom: 1.5rem;
 }
@@ -945,16 +938,16 @@ a:hover {
 }
 
 .contact-icon {
-    color: var(--primary-color);
+    color: var(--secondary-dark);
 }
 
 .footer-contact a {
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--secondary-color);
     text-decoration: none;
 }
 
 .footer-contact a:hover {
-    color: var(--primary-color);
+    color: var(--secondary-dark);
 }
 
 .footer-links {
@@ -966,13 +959,13 @@ a:hover {
 }
 
 .footer-links a {
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--secondary-color);
     text-decoration: none;
     transition: var(--transition);
 }
 
 .footer-links a:hover {
-    color: var(--primary-color);
+    color: var(--secondary-dark);
 }
 
 .social-links {
