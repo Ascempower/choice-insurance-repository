@@ -46,7 +46,6 @@
     
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/choice-insurance-fixes.css">
     
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -196,122 +195,39 @@
                     <!-- Contact Form -->
                     <div class="contact-form-container">
                         <h2>Send Us a Message</h2>
-                        
-                        <!-- Choice Insurance Tabbed Forms -->
-                        <div class="choice-forms-container">
-                            <div class="choice-form-tabs">
-                                <button class="choice-tab-button active" data-form="general-contact-form">General Contact</button>
-                                <button class="choice-tab-button" data-form="secure-medicare-form">Secure Medicare Intake</button>
+                        <form class="contact-form" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+                            <input type="hidden" name="form-name" value="contact">
+                            <div class="hidden">
+                                <label>Don't fill this out if you're human: <input name="bot-field"></label>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="fullName">Full Name *</label>
+                                <input type="text" id="fullName" name="fullName" required>
                             </div>
 
-                            <!-- General Contact Form -->
-                            <div id="general-contact-form" class="choice-form-content active">
-                                <h3 class="form-title">General Contact & Inquiries</h3>
-                                <p class="form-description">For general questions, information, or support, please use the form below. Do not submit sensitive personal health information (PHI) through this form.</p>
-                                
-                                <form action="https://formspree.io/f/yourFormspreeID" method="POST" class="choice-form general-form">
-                                    <input type="hidden" name="_subject" value="New General Inquiry from Choice Insurance Hub">
-                                    
-                                    <div class="form-group">
-                                        <label for="general-name">Full Name <span class="required-field">*</span></label>
-                                        <input type="text" id="general-name" name="name" required>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="general-email">Email Address <span class="required-field">*</span></label>
-                                        <input type="email" id="general-email" name="email" required>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="general-phone">Phone Number</label>
-                                        <input type="tel" id="general-phone" name="phone">
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="general-subject">Subject <span class="required-field">*</span></label>
-                                        <input type="text" id="general-subject" name="subject" required>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="general-message">Message <span class="required-field">*</span></label>
-                                        <textarea id="general-message" name="message" rows="5" required></textarea>
-                                    </div>
-                                    
-                                    <div class="form-group form-notice general-notice">
-                                        <p>By submitting this form, you consent to being contacted by Choice Insurance. Please do not include sensitive health information here. For secure communication, please use our Secure Medicare Intake form or call us at <a href="tel:+18772049648" class="form-link">(877) 204-9648</a>.</p>
-                                    </div>
-                                    
-                                    <button type="submit" class="btn form-submit-button">Send Message</button>
-                                </form>
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required>
                             </div>
 
-                            <!-- Secure Medicare Intake Form -->
-                            <div id="secure-medicare-form" class="choice-form-content">
-                                <h3 class="form-title">Secure Medicare Intake & Scope of Appointment Form</h3>
-                                <div class="form-security-notice hipaa-compliant-badge">
-                                    <span class="secure-icon">🔒</span> HIPAA Compliant Secure Form. All information is encrypted using AES-256 encryption beyond standard HTTPS.
-                                </div>
-                                
-                                <form action="https://your-secure-backend-endpoint.com/submit" method="POST" class="choice-form secure-form" id="medicareIntakeForm">
-                                    <input type="hidden" name="_subject" value="New Secure Medicare Intake Form - Choice Insurance Hub">
-                                    <input type="hidden" name="encrypted_data_indicator" value="true">
-                                    
-                                    <!-- Scope of Appointment Section -->
-                                    <div class="form-section scope-of-appointment-section">
-                                        <h4 class="form-section-title">Scope of Appointment</h4>
-                                        <p class="form-description cms-required-text">
-                                            The Centers for Medicare and Medicaid Services requires agents to document the scope of a marketing appointment prior to any face-to-face sales meeting to ensure understanding of what will be discussed between the agent and the Medicare beneficiary (or their authorized representative).
-                                        </p>
-                                        <p class="form-description cms-required-text">Please check the types of products you want to discuss:</p>
-                                        <div class="form-group checkbox-group">
-                                            <label><input type="checkbox" name="soa_products[]" value="Medicare Advantage"> Medicare Advantage (Part C)</label>
-                                            <label><input type="checkbox" name="soa_products[]" value="Medicare Supplement"> Medicare Supplement (Medigap)</label>
-                                            <label><input type="checkbox" name="soa_products[]" value="Health Insurance"> Health Insurance</label>
-                                            <label><input type="checkbox" name="soa_products[]" value="Critical Illness"> Critical Illness</label>
-                                            <label><input type="checkbox" name="soa_products[]" value="Hospital Indemnity"> Hospital Indemnity</label>
-                                        </div>
-                                    </div>
-
-                                    <!-- Personal Information Section -->
-                                    <div class="form-section personal-information-section">
-                                        <h4 class="form-section-title">Personal Information</h4>
-                                        <div class="form-group">
-                                            <label for="secure-first-name">First Name <span class="required-field">*</span> <span class="phi-indicator" title="Protected Health Information">🔒 PHI</span></label>
-                                            <input type="text" id="secure-first-name" name="first_name" required data-phi-field="true">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="secure-last-name">Last Name <span class="required-field">*</span> <span class="phi-indicator" title="Protected Health Information">🔒 PHI</span></label>
-                                            <input type="text" id="secure-last-name" name="last_name" required data-phi-field="true">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="secure-email">Email Address <span class="required-field">*</span> <span class="phi-indicator" title="Protected Health Information">🔒 PHI</span></label>
-                                            <input type="email" id="secure-email" name="email" required data-phi-field="true">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="secure-phone">Phone Number <span class="required-field">*</span> <span class="phi-indicator" title="Protected Health Information">🔒 PHI</span></label>
-                                            <input type="tel" id="secure-phone" name="phone" required data-phi-field="true">
-                                        </div>
-                                    </div>
-
-                                    <!-- Consent Section -->
-                                    <div class="form-section consent-section">
-                                        <h4 class="form-section-title">Consent & Authorization</h4>
-                                        <div class="form-group checkbox-group consent-checkbox-group">
-                                            <label for="consent-hipaa">
-                                                <input type="checkbox" id="consent-hipaa" name="consent_hipaa" required>
-                                                I consent to the collection and secure processing of my health information in accordance with HIPAA regulations and the Choice Insurance Privacy Policy. <span class="required-field">*</span>
-                                            </label>
-                                            <label for="consent-soa">
-                                                <input type="checkbox" id="consent-soa" name="consent_soa" required>
-                                                I acknowledge and agree to the Scope of Appointment terms outlined above. <span class="required-field">*</span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    
-                                    <button type="submit" class="btn form-submit-button secure-submit-button">Submit Secure Form</button>
-                                </form>
+                            <div class="form-group">
+                                <label for="phone">Phone Number (Optional)</label>
+                                <input type="tel" id="phone" name="phone">
                             </div>
-                        </div>
+
+                            <div class="form-group">
+                                <label for="subject">Subject *</label>
+                                <input type="text" id="subject" name="subject" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Your Message *</label>
+                                <textarea id="message" name="message" rows="6" required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary" onclick="gtag('event', 'submit', {'event_category': 'form', 'event_label': 'contact_form'});">Send Message</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -410,7 +326,6 @@
 
     <!-- JavaScript -->
     <script src="assets/js/script.js"></script>
-    <script src="assets/js/choice-insurance-fixes.js"></script>
 </body>
 </html>
 
