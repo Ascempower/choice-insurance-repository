@@ -1,0 +1,190 @@
+/* CLEAN REBUILD - Choice Insurance Header & Dropdown */
+/* Matching deft-granita-f3dcdc.netlify.app exactly */
+
+/* Reset and Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Header Styles - Exact Match */
+.header {
+    background-color: #A7C9CA;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    height: 60px;
+}
+
+/* Logo */
+.logo {
+    height: 40px;
+}
+
+/* Navigation - Clean Single Row */
+.nav-menu {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    gap: 0;
+}
+
+.nav-item {
+    position: relative;
+}
+
+/* Navigation Links - Exact Styling */
+.nav-link {
+    display: block;
+    padding: 18px 16px;
+    color: #2C5530;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    transition: background-color 0.2s ease;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.nav-link:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
+/* CTA Buttons */
+.cta-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-quote {
+    background-color: #DD8B66;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.btn-consultation {
+    background-color: #2C5530;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/* Services Dropdown - Exact 3x3 Grid */
+.services-dropdown {
+    position: absolute;
+    top: 100%;
+    left: -100px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    padding: 20px;
+    width: 600px;
+    display: none;
+    z-index: 1001;
+}
+
+.nav-item:hover .services-dropdown {
+    display: block;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.service-card {
+    border: 2px solid;
+    border-radius: 6px;
+    padding: 15px;
+    text-decoration: none;
+    color: #333;
+    transition: transform 0.2s ease;
+    background: white;
+}
+
+.service-card:hover {
+    transform: translateY(-2px);
+}
+
+/* Color-coded borders - Exact match */
+.service-card.all-services { border-color: #8B4513; }
+.service-card.medicare-supplement { border-color: #4CAF50; }
+.service-card.hospital-indemnity { border-color: #E91E63; }
+.service-card.medicare-advantage { border-color: #F44336; }
+.service-card.cancer-illness { border-color: #2196F3; }
+.service-card.life-insurance { border-color: #4CAF50; }
+.service-card.final-expense { border-color: #3F51B5; }
+.service-card.annuities { border-color: #FF9800; }
+
+.service-card h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.service-card p {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.4;
+}
+
+/* Body spacing for fixed header */
+body {
+    padding-top: 60px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        height: auto;
+        padding: 10px 20px;
+    }
+    
+    .nav-menu {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px;
+    }
+    
+    .services-dropdown {
+        left: -200px;
+        width: 400px;
+    }
+    
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    body {
+        padding-top: 100px;
+    }
+}
+
